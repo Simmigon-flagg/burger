@@ -1,3 +1,10 @@
-body {
-    background: orangered;
-}
+ /* body {
+    background: black;
+    color: white;
+}  */
+
+ .btn-small {
+    height: 20px;
+    line-height: 20px;
+    padding: 0 0.6rem;
+} 
