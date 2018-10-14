@@ -1,18 +1,13 @@
-
-	{{!-- <button class="change-devour" data-id="{{id}}" data-newDevoured="{{devoured}}"> --}}
-		<table class="bordered higlight responsive-table"> 
-			<tbody>
-		{{#if devoured }}
-	
-				<tr>
-					<th> {{id}} {{burger_name}} </th>
-				</tr>
-	
-		
-		{{else}} 
-		<button class="change-devour btn-small waves-effect waves-light" data-id="{{id}}" data-newDevoured="{{devoured}}" type="submit" name="action"> 
+<table>
+	<tbody>
+		<tr>
+			<th>
+				{{#if devoured }} {{id}} {{burger_name}} {{else}}
+				<button class="change-devour btn-small waves-effect waves-light" data-id="{{id}}" data-newDevoured="{{devoured}}" type="submit"
+				 name="action"> 
 			 Devour?
-		 </button> {{burger_name}}
-		  {{/if}}
+		 </button> {{burger_name}} {{/if}}
+			</th>
+		</tr>
 	</tbody>
-	</table>
+</table>
