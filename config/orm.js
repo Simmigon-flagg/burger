@@ -32,41 +32,44 @@ function convertObjectsToSQLSyntax(ob) {
   return arr.toString();
 }
 
-module.exports = {
-  all: function(tablevalue, bb) {
-    var queryString = "SELECT * FROM " + tableInput + ";";
-    connection.query(queryString, function(err, result) {
+var orm  = {
+
+  all: function(tablevalue, callback) {
+    var queryString = "SELECT * FROM " + tablevalue + ";";
+    var k = connection.query(queryString, function(err, result) {
       if (err) {
         throw err;
       }
-      bb(result);
+    
+      callback(result);
     });
   },
-  create: function(table, cols, vals, bb) {
+  create: function(table, cols, vals, callback) {
+     
     var queryString = "INSERT INTO " + table;
 
     queryString += " (";
     queryString += cols.toString();
     queryString += ") ";
     queryString += "VALUES (";
-    queryString += printQuestionMarks(vals.length);
+    queryString += printQuestionMarksHelper(vals.length);
     queryString += ") ";
 
-    console.log(queryString);
+    console.log(`${vals}`);
 
     connection.query(queryString, vals, function(err, result) {
       if (err) {
         throw err;
       }
 
-      bb(result);
+      callback(result);
     });
   },
-  update: function(table, objColVals, condition, bb) {
+  update: function(table, objColVals, condition, callback) {
     var queryString = "UPDATE " + table;
 
     queryString += " SET ";
-    queryString += objToSql(objColVals);
+    queryString += convertObjectsToSQLSyntax(objColVals);
     queryString += " WHERE ";
     queryString += condition;
 
@@ -75,8 +78,9 @@ module.exports = {
       if (err) {
         throw err;
       }
-
-      bb(result);
+      callback(result);
     });
   }
 };
+
+module.exports = orm;
