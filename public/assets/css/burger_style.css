@@ -9,8 +9,12 @@
     padding: 0 0.6rem;
 } 
 
+img {
+    width: 30%;
+    height: auto;
+}
 
-tables {
+/* table {
     background: green;
     vertical-align: bottom;
-}
+} */
